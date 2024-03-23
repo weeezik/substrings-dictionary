@@ -2,20 +2,15 @@ dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","o
 
 
 def substrings (string, dictionary)
-  substring_array = string.split(" ")
-  #delete all punctuation
-  #make lowercase
-  puts substring_array
-  substring_array.reduce(Hash.new(0)) do |substring_hash, substring|
-    dictionary.each do |dict|
-      if dict.downcase == substring.downcase
-        substring_hash[substring] = 1
-        substring_hash
-      else
-        substring_hash
-      end
-    end
-    end
+  new_string = string.downcase.gsub(/\W/, " ") #delete all punctuation
+  string_array = new_string.split(" ")  #make lowercase
+
+  overlap_array = dictionary - (dictionary - string_array)
+  overlap_array.reduce(Hash.new(0)) do |substring_count_hash, substring|
+    substring_count_hash[substring] = 1
+    substring_count_hash
+  end
+
 end
 
 
