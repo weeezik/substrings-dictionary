@@ -11,8 +11,13 @@ def substrings (string, dictionary)
     substring_array.each do |substring|
       # binding.pry
       if substring.include? dictstring
-        match_hash[dictstring] = 1
-        match_hash
+        if match_hash[dictstring] > 0
+          match_hash[dictstring] += 1
+          match_hash
+        else
+          match_hash[dictstring] = 1
+          match_hash
+        end
         # binding.pry
       else
         match_hash
@@ -24,4 +29,4 @@ def substrings (string, dictionary)
 end
 
 
-puts substrings("below", dictionary)
+puts substrings("Howdy partner, sit down! How's it going?", dictionary)
