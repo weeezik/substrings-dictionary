@@ -4,21 +4,21 @@ dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","o
 
 
 def substrings (string, dictionary)
-  new_string = string.downcase.gsub(/\W/, " ") #delete all punctuation
-  string_array = new_string.split(" ")  #make lowercase
-  # for each substring from given string check to see if it 
-  # matches any of the words in the dictionary
-  string_array.each do |substring|
-    dictionary.reduce(Hash.new(0)) do |substring_hash, dictstring|
-    if dictstring.include? substring == true
-       dictstring
-    else
-      
+  new_string = string.downcase.gsub(/\W/, " ") #downcase AND replace punctuation with spaces 
+  substring_array = new_string.split(" ")  #turn standardized string into array split by words
+
+  substring_array
+
+  substring_array.each do |substring|     #runs below one substring at a time
+    dictionary.reduce(Hash.new(0)) do |substring_count_hash, dictionary_string|
+      if substring.include?dictionary_string      #if the substring word contains any of the dictionary strings, the dictionary strings that are contained within the substring word will be added to the hash X times
+        substring_count_hash[dictionary_string] = 1  #replace with counter
+        substring_count_hash
+      else
+        p substring_count_hash
+      end
     end
   end
-
-  end
-
 end
 
 
